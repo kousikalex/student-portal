@@ -1,0 +1,112 @@
+
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.header {
+  background: #040b14;
+  width: 80px;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+.header .header-toggle {
+  color: white;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.navmenu {
+  padding-top: 60px;
+}
+
+.navmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navmenu li {
+  margin: 20px 0;
+}
+
+.navmenu a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+.navmenu a:hover,
+.navmenu a.active {
+  color: #00bcd4;
+}
+
+.navicon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.navmenu.open {
+  width: 200px;
+  background: #081425;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.main-content {
+  margin-left: 80px;
+  padding: 100px 20px;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(135deg, #3b3b98, #182848);
+  color: #fff;
+}
+
+.description {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popup {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 250px;
+  background: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  transition: opacity 0.3s;
+  z-index: 10;
+  font-size: 12px;
+  white-space: normal;
+}
+
+.description:hover .popup {
+  visibility: visible;
+  opacity: 1;
+}
+
