@@ -71,6 +71,9 @@ function App() {
           <Route path="trainer/create" element={<TrainerCreate />} />
           <Route path="trainer/index" element={<TrainerIndex />} />
 
+          <Route path="trainer/index" element={<TrainerIndex />} />
+
+
 
         </Route>
       </Routes>
