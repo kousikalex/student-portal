@@ -27,6 +27,14 @@ import StudentUpload from "./admin/pages/student/upload.jsx";
 import TrainerIndex from "./admin/pages/trainer/Index.jsx";
 import TrainerCreate from "./admin/pages/trainer/Create.jsx";
 
+// trainer panel
+import TrainerLayout from "./trainer/layout/TrainerLayout";
+
+import Attendance from "./trainer/pages/Attendance";
+import AllocatedWorks from "./trainer/pages/AllocatedWorks";
+import Notifications from "./trainer/pages/Notifications";
+import CourseMaterials from "./trainer/pages/CourseMaterials";
+
 import LoginPage from "./user/Login.jsx";
 
 function App() {
@@ -75,6 +83,24 @@ function App() {
 
 
 
+        </Route>
+
+
+          {/* Trainer Layout */}
+        <Route
+  path="/trainer"
+  element={
+    <TrainerProtectedRoute>
+      <TrainerLayout />
+    </TrainerProtectedRoute>
+  }
+>
+        
+          {/* <Route path="dashboard" element={<Dashboard />} /> */}
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="works" element={<AllocatedWorks />} />
+          <Route path="notifications" element={<Notifications />} />
+          <Route path="materials" element={<CourseMaterials />} />
         </Route>
       </Routes>
     </Router>
