@@ -1,19 +1,88 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Trainersidebar = () => {
+const AdminSidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("trainer"); // clear trainer session
+    navigate("/trainer/login"); // redirect to login
+  };
   return (
-    <aside style={{ width: "220px", background: "#1f2937", color: "#fff" }}>
-      <h3 style={{ padding: "20px" }}>Trainer Panel</h3>
+    <nav className="sidebar sidebar-offcanvas" id="sidebar">
+      <ul className="nav">
+        {/* Dashboard */}
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/dashboard">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Dashboard</span>
+          </Link>
+        </li>
 
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li><Link to="/trainer/dashboard">Dashboard</Link></li>
-        <li><Link to="/trainer/attendance">Attendance</Link></li>
-        <li><Link to="/trainer/works">Allocated Works</Link></li>
-        <li><Link to="/trainer/notifications">Notifications</Link></li>
-        <li><Link to="/trainer/materials">Course Materials</Link></li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/calendar">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Calendar</span>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/attendance">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Attendance</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/materials">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Course Materials</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/works">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Allocated Works</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/notifications">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Notifications</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/trainer/materials">
+            <i className="icon-grid menu-icon"></i>
+            <span className="menu-title">Course Materials</span>
+          </Link>
+        </li>
+
+        {/* Widgets */}
+        {/* <li className="nav-item">
+          <Link className="nav-link" to="/admin/widgets">
+            <i className="icon-cog menu-icon"></i>
+            <span className="menu-title">Widgets</span>
+          </Link>
+        </li> */}
+
+        <li className="nav-item">
+          <button
+            className="nav-link"
+            onClick={handleLogout}
+            style={{
+              border: "none",
+              width: "100%",
+              textAlign: "left",
+              cursor: "pointer",
+            }}
+          >
+            <i className="icon-power menu-icon"></i>
+            <span className="menu-title">Logout</span>
+          </button>
+        </li>
       </ul>
-    </aside>
+    </nav>
   );
 };
 
-export default Trainersidebar;
+export default AdminSidebar;

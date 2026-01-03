@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
-import loginIllustration from "./image/login.jpg";
+import loginIllustration from "../image/login.jpg";
 
 const TrainerLogin = () => {
   const [email, setEmail] = useState("");
@@ -10,36 +10,32 @@ const TrainerLogin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
 
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/trainer/login",
-      { email, password }
-    );
+    try {
+      const res = await axios.post("http://localhost:5000/api/trainers/login", {
+        email,
+        password,
+      });
+      if (res.data.success) {
+        const user = res.data.user;
 
-    if (res.data.success) {
-      const user = res.data.user;
+        if (user.role !== "trainer") {
+          setError("Unauthorized access");
+          return;
+        }
 
-      // 🔒 Ensure trainer only
-      if (user.role !== "trainer") {
-        setError("Unauthorized access");
-        return;
+        sessionStorage.setItem("trainer", JSON.stringify(user));
+        navigate("/trainer/dashboard");
+      } else {
+        setError(res.data.message || "Invalid login");
       }
-
-      sessionStorage.setItem("trainer", JSON.stringify(user));
-
-      navigate("/trainer/dashboard");
-    } else {
-      setError("Invalid email or password");
+    } catch (err) {
+      setError("Login failed");
     }
-  } catch (err) {
-    setError("Login failed");
-  }
-};
-
+  };
 
   return (
     <div className="login-container">

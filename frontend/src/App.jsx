@@ -3,7 +3,7 @@ import Sidebar from "./user/layout/sidebar.jsx";
 import Header from "./components/Header";
 // import Home from "./pages/Home.jsx";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import UserLayout from "./user/layout/UserLayout.jsx";
 import AdminLayout from "./admin/layout/AdminLayout.jsx";
 
@@ -28,82 +28,79 @@ import TrainerIndex from "./admin/pages/trainer/Index.jsx";
 import TrainerCreate from "./admin/pages/trainer/Create.jsx";
 
 // trainer panel
-import TrainerLayout from "./trainer/layout/TrainerLayout";
+import TrainerProtectedRoute from "./routes/TrainerProtectedRoute";
 
+import TrainerLayout from "./trainer/layout/TrainerLayout";
+import TrainerLogin from "./trainer/pages/TrainerLogin";
+import TrainerDashboard from "./trainer/pages/TrainerDashboard";
 import Attendance from "./trainer/pages/Attendance";
 import AllocatedWorks from "./trainer/pages/AllocatedWorks";
 import Notifications from "./trainer/pages/Notifications";
 import CourseMaterials from "./trainer/pages/CourseMaterials";
+import TrainerCalendar from "./trainer/pages/TrainerCalendar";
 
 import LoginPage from "./user/Login.jsx";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* USER ROUTES */}
-        <Route element={<UserLayout />}>
-          <Route path="/course/:course_id" element={<Course />} />
-          <Route path="/subcourse/:subcourseId" element={<Subcourse />} />
-        </Route>
+    <Routes>
+      {/* USER ROUTES */}
+      <Route element={<UserLayout />}>
+        <Route path="/course/:course_id" element={<Course />} />
+        <Route path="/subcourse/:subcourseId" element={<Subcourse />} />
+      </Route>
 
-        <Route>
-          <Route path="/student/login" element={<LoginPage />} />
-        </Route>
+      <Route>
+        <Route path="/student/login" element={<LoginPage />} />
+      </Route>
 
-        {/* ADMIN ROUTES */}
-        <Route element={<AdminLayout />}>
-          <Route path="/admin" element={<Dashboard />} />
-          {/* course */}
-          <Route path="/admin/course" element={<AdminCourse />} />
-          <Route path="/admin/index" element={<Courseindex />} />
+      {/* ADMIN ROUTES */}
+      <Route element={<AdminLayout />}>
+        <Route path="/admin" element={<Dashboard />} />
+        {/* course */}
+        <Route path="/admin/course" element={<AdminCourse />} />
+        <Route path="/admin/index" element={<Courseindex />} />
 
-          {/* sub-Course */}
-          <Route path="subcourse/create" element={<Subcoursecreate/>} />
-          <Route path="subcourse/index" element={<Subcourseindex />} />
+        {/* sub-Course */}
+        <Route path="subcourse/create" element={<Subcoursecreate />} />
+        <Route path="subcourse/index" element={<Subcourseindex />} />
 
-          {/* topic */}
-          <Route path="topic/create" element={<Topiccreate />} />
-          <Route path="topic/index" element={<Topicindex />} />
+        {/* topic */}
+        <Route path="topic/create" element={<Topiccreate />} />
+        <Route path="topic/index" element={<Topicindex />} />
 
-           {/* subtopic */}
-          <Route path="subtopic/create/:id" element={<Subtopiccreate />} />
-          <Route path="subtopic/index" element={<Subtopicindex />} />
+        {/* subtopic */}
+        <Route path="subtopic/create/:id" element={<Subtopiccreate />} />
+        <Route path="subtopic/index" element={<Subtopicindex />} />
 
-          {/* Student */}
-          <Route path="student/create" element={<StudentCreate />} />
-          <Route path="student/index" element={<StudentIndex />} />
-          <Route path="student/upload" element={<StudentUpload />} />
+        {/* Student */}
+        <Route path="student/create" element={<StudentCreate />} />
+        <Route path="student/index" element={<StudentIndex />} />
+        <Route path="student/upload" element={<StudentUpload />} />
 
-          {/* trainer */}
-          <Route path="trainer/create" element={<TrainerCreate />} />
-          <Route path="trainer/index" element={<TrainerIndex />} />
+        {/* trainer */}
+        <Route path="trainer/create" element={<TrainerCreate />} />
+        <Route path="trainer/index" element={<TrainerIndex />} />
+      </Route>
 
-          <Route path="trainer/index" element={<TrainerIndex />} />
-
-
-
-        </Route>
-
-
-          {/* Trainer Layout */}
-        <Route
-  path="/trainer"
-  element={
-    <TrainerProtectedRoute>
-      <TrainerLayout />
-    </TrainerProtectedRoute>
-  }
->
-        
-          {/* <Route path="dashboard" element={<Dashboard />} /> */}
-          <Route path="attendance" element={<Attendance />} />
-          <Route path="works" element={<AllocatedWorks />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="materials" element={<CourseMaterials />} />
-        </Route>
-      </Routes>
-    </Router>
+      {/* Trainer Layout */}
+      <Route path="/trainer/login" element={<TrainerLogin />} />
+      <Route
+        path="/trainer"
+        element={
+          <TrainerProtectedRoute>
+            <TrainerLayout />
+          </TrainerProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<TrainerDashboard />} />
+        <Route path="calendar" element={<TrainerCalendar />} />
+        <Route path="attendance" element={<Attendance />} />
+        <Route path="works" element={<AllocatedWorks />} />
+        <Route path="notifications" element={<Notifications />} />
+        <Route path="materials" element={<CourseMaterials />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -37,3 +37,35 @@ export const getTrainers = async (req, res) => {
     });
   }
 };
+
+export const trainerLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const trainer = await Trainer.findOne({ email });
+
+    if (!trainer) {
+      return res.json({ success: false, message: "Trainer not found" });
+    }
+
+    if (trainer.phone !== password) {
+      return res.json({ success: false, message: "Invalid mobile number" });
+    }
+
+    if (trainer.status !== "active") {
+      return res.json({ success: false, message: "Trainer inactive" });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        id: trainer._id,
+        name: trainer.name,
+        email: trainer.email,
+        role: "trainer",
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};

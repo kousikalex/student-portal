@@ -18,8 +18,9 @@ import GetTopic from "./routes/getstudenttopic.js";
 import PostDocument from "./routes/documentRoute.js";
 import getDocument from "./routes/getdocumentRoute.js";
 import trainerRoutes from "./routes/trainerRoutes.js";
-
-
+import trainerLoginRoute from "./routes/login.js";
+import attendanceRoutes from "./routes/attendanceRoutes.js";
+// const trainerLoginRoute = require("./routes/login.js");
 
 dotenv.config();
 const app = express();
@@ -50,6 +51,8 @@ app.use("/api/document", PostDocument);
 app.use("/api/getdocument", getDocument);
 app.use("/api/trainers", trainerRoutes);
 app.use("/api/studentUpload", studentUpload);
+app.use("/api/trainerlogin",trainerLoginRoute)
+app.use("/api/attendance", attendanceRoutes);
 
 
 // app.use("/subcourse/byCourse/:courseId", dependenceRoute);

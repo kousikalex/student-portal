@@ -17,6 +17,8 @@ const trainerSchema = new mongoose.Schema(
     branch: String,
 
     address: String,
+    status: { type: String, default: "active" },
+  role: { type: String, default: "trainer" },
   },
   { timestamps: true }
 );
