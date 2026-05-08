@@ -19,14 +19,10 @@ pipeline {
     }
     post{
     failure{
-        mail to:'santhiyasabapathy@gmail.com',
-            subject:"Build failed",
-            body:"Check jenkins"
+        echo 'Build Failed'
             }
     success{
-        mail to:'santhiyasabapathy@gmail.com',
-            subject:"Build Success",
-            body:"All Good. Build sucess in jenkins"
+          echo 'Build Failed'
             }
 }
 
