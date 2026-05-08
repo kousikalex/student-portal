@@ -17,16 +17,17 @@ pipeline {
             }
         }
     }
-}
-post{
+    post{
     failure{
         mail to:'santhiyasabapathy@gmail.com',
             subject:"Build failed",
-            body:"Check jenkins",
+            body:"Check jenkins"
             }
     success{
         mail to:'santhiyasabapathy@gmail.com',
             subject:"Build Success",
-            body:"All Good. Build sucess in jenkins",
+            body:"All Good. Build sucess in jenkins"
             }
+}
+
 }
